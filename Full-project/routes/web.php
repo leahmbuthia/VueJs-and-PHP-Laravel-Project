@@ -12,5 +12,7 @@ Route::get('/', function () {
 //     return view('dashboard');
 // });
 Route::get('api/users', [userController::class, 'index']);
+Route::post('api/users', [userController::class, 'store']);
+Route::put('api/users/{user}', [userController::class, 'update']);
 
 Route::get('{view}', ApplicationController::class)->where('view', '(.*)');
