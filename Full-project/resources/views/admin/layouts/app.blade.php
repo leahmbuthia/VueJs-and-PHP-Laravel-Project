@@ -190,7 +190,7 @@ Appointments
 </li>
 <li class="nav-item">
 <router-link to="admin/users" class="nav-link">
-<i class="nav-icon fas fa-profile-alt"></i>
+<i class="nav-icon fas fa-users-alt"></i>
 <p>
 Users
 
