@@ -11,4 +11,4 @@ Route::get('/', function () {
 //     return view('dashboard');
 // });
 
-Route::get('{view}',ApplicationController::class)->where('view', '(.*)');
+Route::get('{view}', ApplicationController::class)->where('view', '(.*)');
