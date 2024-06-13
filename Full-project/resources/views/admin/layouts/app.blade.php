@@ -175,7 +175,7 @@ Nora Silvester
 Dashboard
 </p>
 </router-link>
-</router>
+
 </li>
 <li class="nav-item">
 <router-link to="admin/appointments" class="nav-link">
@@ -185,7 +185,18 @@ Appointments
 
 </p>
 </router-link> 
-</router>
+
+</li>
+</li>
+<li class="nav-item">
+<router-link to="admin/users" class="nav-link">
+<i class="nav-icon fas fa-profile-alt"></i>
+<p>
+Users
+
+</p>
+</router-link> 
+
 </li>
 <li class="nav-item">
 <a href="#" class="nav-link">
