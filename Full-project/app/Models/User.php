@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\RoleType;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'avatar',
     ];
 
     /**
@@ -33,24 +38,34 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
-    }
-    protected $appends=[
+    protected $appends = [
         'formatted_created_at',
     ];
 
     public function getFormattedCreatedAtAttribute()
     {
-        return $this->created_at->format(config('app.data_format'));
+        return $this->created_at->format(setting('date_format'));
+    }
+
+    public function role(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => RoleType::from($value)->name,
+        );
+    }
+
+    public function avatar(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => asset(Storage::url($value) ?? 'noimage.png'),
+        );
     }
 }
