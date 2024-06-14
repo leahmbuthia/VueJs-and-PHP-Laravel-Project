@@ -14,5 +14,6 @@ Route::get('/', function () {
 Route::get('api/users', [userController::class, 'index']);
 Route::post('api/users', [userController::class, 'store']);
 Route::put('api/users/{user}', [userController::class, 'update']);
+Route::delete('api/users/{user}', [userController::class, 'destory']);
 
 Route::get('{view}', ApplicationController::class)->where('view', '(.*)');

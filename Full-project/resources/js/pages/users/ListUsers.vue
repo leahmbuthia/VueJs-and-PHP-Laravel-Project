@@ -286,7 +286,8 @@ const confirmUserDeletion = (id) => {
 };
 
 const deleteUser = () => {
-    axios.delete(`/api/users/${userIdBeingDeleted.value}`).then(() => {
+    axios.delete(`/api/users/${userIdBeingDeleted.value}`)
+    .then(() => {
         $("#deleteUserModal").modal("hide");
         toastr.success("User deleted successfully!");
         users.value.data = users.value.data.filter(

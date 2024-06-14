@@ -51,12 +51,12 @@ class UserController extends Controller
         return $user;
     }
 
-    // public function destory(User $user)
-    // {
-    //     $user->delete();
+    public function destory(User $user)
+    {
+        $user->delete();
 
-    //     return response()->noContent();
-    // }
+        return response()->noContent();
+    }
 
     // public function changeRole(User $user)
     // {
